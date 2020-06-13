@@ -1,39 +1,62 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { AppColors } from '../utils/AppConst';
+import { TodoContext } from './TodoContext';
 
-const DisplayTodoList = ({ data }) => {
+const DisplayTodoList = () => {
     return (
-        <View style={styles.todoList}>
-            <FlatList
-                data={data}
-                renderItem={({ item }) => {
-                    const { todo, date, time, style: { listColor } } = item;
+        <TodoContext.Consumer>
+            {(context) => {
+                const { todoList } = context;
 
-                    return (
-                        <View style={{ ...styles.todoCard, borderLeftColor: listColor }}>
-                            <Text style={styles.title}>{todo}</Text>
-                            <Text style={styles.subtitle}>{`${date} : ${time}`}</Text>
-                        </View>
-                    )
-                }}
-            />
-        </View>
+                return (
+                    <View style={styles.container}>
+                        <Text style={styles.header}>Todo List</Text>
+                        <FlatList
+                            data={todoList}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={({ item }) => {
+                                const { todo, date, time, style: { listColor } } = item;
+
+                                return (
+                                    <View style={{ ...styles.todoCard, borderLeftColor: listColor }}>
+                                        <Text style={styles.title}>{todo}</Text>
+                                        <Text style={styles.subtitle}>{`${date} : ${time}`}</Text>
+                                    </View>
+                                )
+                            }}
+                        />
+                    </View>
+                )
+            }}
+        </TodoContext.Consumer>
     );
 };
 
 export default DisplayTodoList;
 
 const styles = StyleSheet.create({
+    header: {
+        fontSize: 20,
+        width: '50%',
+        marginVertical: 10,
+        marginHorizontal: 10,
+        borderBottomColor: AppColors.Primary,
+        borderBottomWidth: 2
+    },
+    container: {
+        flex: 1
+    },
     todoCard: {
         justifyContent: 'center',
-        height: 70,
-        margin: 5,
+        minHeight: 70,
+        margin: 3,
         paddingHorizontal: 10,
+        paddingVertical: 10,
         borderLeftWidth: 2,
         borderRadius: 2,
         backgroundColor: 'white',
-        elevation: 3
+        elevation: 2
     },
     title: {
         fontSize: 18,

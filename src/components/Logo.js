@@ -10,7 +10,7 @@ const logoText = [
     { key: 4, letter: 'O', color: AppColors.Primary },
 ];
 
-export const Logo = ({ fontSize, spaceBetween, circleSize: { width, height } }) => {
+export const Logo = ({ fontSize, circleSize: { width, height } }) => {
     return (
         <View style={styles.logo}>
             {logoText.map(data =>
@@ -18,7 +18,6 @@ export const Logo = ({ fontSize, spaceBetween, circleSize: { width, height } }) 
                     style={{
                         ...styles.fontBox,
                         backgroundColor: data.color,
-                        marginHorizontal: spaceBetween,
                         width: width,
                         height: height
                     }}
@@ -68,12 +67,17 @@ export const LogoAnimation = () => {
 
     return (
         <Animated.View style={{ transform: [{ translateY: setBounce }, { translateY: bounceValue }] }}>
-            <Logo fontSize={30} spaceBetween={10} circleSize={{ width: 50, height: 50 }} />
+            <View style={styles.logoBox}>
+                <Logo fontSize={30} spaceBetween={10} circleSize={{ width: 50, height: 50 }} />
+            </View>
         </Animated.View>
     );
 };
 
 const styles = StyleSheet.create({
+    logoBox: {
+        width: 250
+    },
     logo: {
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -83,14 +87,7 @@ const styles = StyleSheet.create({
         borderRadius: 1000,
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: AppColors.Dark,
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.30,
-        shadowRadius: 4.65,
-        elevation: 8,
+        elevation: 5,
     },
     fonts: {
         color: 'white',

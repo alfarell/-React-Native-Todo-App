@@ -1,55 +1,20 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, StatusBar, TextInput, Button } from 'react-native';
-import { Logo } from '../components/Logo';
+import React from 'react';
+import { StyleSheet, View, StatusBar, Animated, Text, Button } from 'react-native';
+
 import DisplayTodoList from '../components/DisplayTodoList';
-import { randomColor } from '../utils/AppConst';
+import InputForm from '../components/InputForm';
+import TodoContextProvider from '../components/TodoContext';
+import { AppColors } from '../utils/AppConst';
 
-const HomeScreen = ({ navigation }) => {
-    navigation.setOptions({
-        headerTitle: () => {
-            return (
-                <View style={{ width: 150 }}>
-                    <Logo fontSize={14} circleSize={{ height: 25, width: 25 }} />
-                </View>
-            )
-        },
-    });
-
-    const [inputText, setInputText] = useState('');
-    const [todoList, setTodoList] = useState([]);
-
-    const handleSubmit = () => {
-        const date = new Date();
-
-        if (inputText) {
-            setTodoList([
-                ...todoList,
-                {
-                    key: Math.random().toString(),
-                    todo: inputText,
-                    date: date.toLocaleDateString(),
-                    time: date.toLocaleTimeString(),
-                    style: {
-                        listColor: randomColor()
-                    }
-                }
-            ]);
-        }
-
-        setInputText('');
-    }
-
+const HomeScreen = () => {
     return (
-        <View style={styles.container}>
-            <StatusBar backgroundColor='#fff' barStyle='dark-content' />
-            <View style={styles.form}>
-                <TextInput placeholder='Enter text...' value={inputText} onChangeText={(text) => setInputText(text)} />
-                <Button title='ADD' onPress={handleSubmit} />
+        <TodoContextProvider>
+            <View style={styles.container}>
+                <StatusBar backgroundColor='#fff' barStyle='dark-content' />
+                <InputForm />
+                <DisplayTodoList />
             </View>
-            <View style={styles.todoList}>
-                <DisplayTodoList data={todoList} />
-            </View>
-        </View>
+        </TodoContextProvider>
     );
 };
 
@@ -60,11 +25,4 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
     },
-    form: {
-        marginVertical: 5,
-        flex: 1,
-    },
-    todoList: {
-        flex: 4
-    }
 });
