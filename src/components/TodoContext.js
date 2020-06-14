@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { AppColors } from '../utils/AppConst';
 import { ToastAndroid, Keyboard } from 'react-native';
+import uuid from 'react-native-uuid';
+import { AppColors } from '../utils/AppConst';
 
 export const TodoContext = createContext();
 
@@ -15,7 +16,7 @@ const TodoContextProvider = (props) => {
             setTodoList([
                 ...todoList,
                 {
-                    key: Math.random().toString(),
+                    key: uuid.v1(),
                     todo: inputText,
                     date: date.toLocaleDateString(),
                     time: date.toLocaleTimeString(),
