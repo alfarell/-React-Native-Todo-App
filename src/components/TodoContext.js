@@ -1,5 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { AppColors } from '../utils/AppConst';
+import { ToastAndroid, Keyboard } from 'react-native';
 
 export const TodoContext = createContext();
 
@@ -26,7 +27,19 @@ const TodoContextProvider = (props) => {
         }
 
         setInputText('');
-    }
+        Keyboard.dismiss();
+    };
+
+    useEffect(() => {
+        if (todoList.length !== 0) showTodoAddedToast();
+    }, [todoList]);
+
+    const showTodoAddedToast = () => {
+        ToastAndroid.show(
+            'New To-do added to list',
+            ToastAndroid.SHORT
+        )
+    };
 
     return (
         <TodoContext.Provider value={{ todoList, inputText, setInputText, submitTodo }}>
@@ -45,6 +58,6 @@ const randomColor = () => {
     const randomIndex = Math.floor(Math.random() * 4) + 0;
 
     return colors[randomIndex];
-}
+};
 
 export default TodoContextProvider;
