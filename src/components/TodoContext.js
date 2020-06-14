@@ -5,20 +5,9 @@ export const TodoContext = createContext();
 
 const TodoContextProvider = (props) => {
     const [todoList, setTodoList] = useState([]);
+    const [inputText, setInputText] = useState('');
 
-    const randomColor = () => {
-        const colors = [
-            AppColors.Primary,
-            AppColors.Secondary,
-            AppColors.Green,
-            AppColors.Red,
-        ];
-        const randomIndex = Math.floor(Math.random() * 4) + 0;
-
-        return colors[randomIndex];
-    }
-
-    const submitTodo = (inputText) => {
+    const submitTodo = () => {
         const date = new Date();
 
         if (inputText) {
@@ -35,13 +24,27 @@ const TodoContextProvider = (props) => {
                 }
             ]);
         }
+
+        setInputText('');
     }
 
     return (
-        <TodoContext.Provider value={{ todoList, submitTodo }}>
+        <TodoContext.Provider value={{ todoList, inputText, setInputText, submitTodo }}>
             {props.children}
         </TodoContext.Provider>
     );
 };
+
+const randomColor = () => {
+    const colors = [
+        AppColors.Primary,
+        AppColors.Secondary,
+        AppColors.Green,
+        AppColors.Red,
+    ];
+    const randomIndex = Math.floor(Math.random() * 4) + 0;
+
+    return colors[randomIndex];
+}
 
 export default TodoContextProvider;

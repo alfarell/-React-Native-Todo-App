@@ -1,15 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
 import { TodoContext } from './TodoContext';
 
 const InputForm = () => {
-    const { submitTodo } = useContext(TodoContext);
-    const [inputText, setInputText] = useState('');
-
-    const handleSubmit = () => {
-        submitTodo(inputText);
-        setInputText('');
-    };
+    const { inputText, setInputText, submitTodo } = useContext(TodoContext);
 
     return (
         <View style={styles.form}>
@@ -19,7 +13,7 @@ const InputForm = () => {
                 value={inputText}
                 onChangeText={(text) => setInputText(text)}
             />
-            <Button title='ADD' onPress={handleSubmit} />
+            <Button title='ADD' onPress={submitTodo} />
         </View>
     );
 };

@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, Animated, Text, Button } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 
 import DisplayTodoList from '../components/DisplayTodoList';
 import InputForm from '../components/InputForm';
 import TodoContextProvider from '../components/TodoContext';
-import { AppColors } from '../utils/AppConst';
 
 const HomeScreen = () => {
     return (

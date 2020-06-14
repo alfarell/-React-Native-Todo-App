@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         elevation: 2
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
     },
     subtitle: {
         fontSize: 12,
