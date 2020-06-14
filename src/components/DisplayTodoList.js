@@ -1,35 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { AppColors } from '../utils/AppConst';
 import { TodoContext } from './TodoContext';
 
 const DisplayTodoList = () => {
+    const { todoList } = useContext(TodoContext);
+
     return (
-        <TodoContext.Consumer>
-            {(context) => {
-                const { todoList } = context;
+        <View style={styles.container}>
+            <Text style={styles.header}>Todo List</Text>
+            <FlatList
+                data={todoList}
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item }) => {
+                    const { todo, date, time, style: { listColor } } = item;
 
-                return (
-                    <View style={styles.container}>
-                        <Text style={styles.header}>Todo List</Text>
-                        <FlatList
-                            data={todoList}
-                            showsVerticalScrollIndicator={false}
-                            renderItem={({ item }) => {
-                                const { todo, date, time, style: { listColor } } = item;
-
-                                return (
-                                    <View style={{ ...styles.todoCard, borderLeftColor: listColor }}>
-                                        <Text style={styles.title}>{todo}</Text>
-                                        <Text style={styles.subtitle}>{`${date} : ${time}`}</Text>
-                                    </View>
-                                )
-                            }}
-                        />
-                    </View>
-                )
-            }}
-        </TodoContext.Consumer>
+                    return (
+                        <View style={{ ...styles.todoCard, borderLeftColor: listColor }}>
+                            <Text style={styles.title}>{todo}</Text>
+                            <Text style={styles.subtitle}>{`${date} : ${time}`}</Text>
+                        </View>
+                    )
+                }}
+            />
+        </View>
     );
 };
 

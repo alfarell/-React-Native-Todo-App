@@ -18,7 +18,7 @@ const TodoContextProvider = (props) => {
         return colors[randomIndex];
     }
 
-    const handleSubmit = (inputText) => {
+    const submitTodo = (inputText) => {
         const date = new Date();
 
         if (inputText) {
@@ -38,7 +38,7 @@ const TodoContextProvider = (props) => {
     }
 
     return (
-        <TodoContext.Provider value={{ todoList, handleSubmit }}>
+        <TodoContext.Provider value={{ todoList, submitTodo }}>
             {props.children}
         </TodoContext.Provider>
     );
