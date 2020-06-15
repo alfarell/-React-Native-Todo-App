@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
-import { TodoContext } from './TodoContext';
+import { TodoContext } from '../services/TodoContext';
 
 const InputForm = () => {
     const { inputText, setInputText, submitTodo } = useContext(TodoContext);

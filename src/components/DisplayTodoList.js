@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { AppColors } from '../utils/AppConst';
-import { TodoContext } from './TodoContext';
+import { TodoContext } from '../services/TodoContext';
+import ListItem from './ListItem';
 
 const DisplayTodoList = () => {
     const { todoList } = useContext(TodoContext);
@@ -12,16 +13,7 @@ const DisplayTodoList = () => {
             <FlatList
                 data={todoList}
                 showsVerticalScrollIndicator={false}
-                renderItem={({ item }) => {
-                    const { todo, date, time, style: { listColor } } = item;
-
-                    return (
-                        <View style={{ ...styles.todoCard, borderLeftColor: listColor }}>
-                            <Text style={styles.title}>{todo}</Text>
-                            <Text style={styles.subtitle}>{`${date} : ${time}`}</Text>
-                        </View>
-                    )
-                }}
+                renderItem={({ item }) => <ListItem item={item} />}
             />
         </View>
     );
@@ -40,23 +32,5 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1
-    },
-    todoCard: {
-        justifyContent: 'center',
-        minHeight: 70,
-        margin: 3,
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        borderLeftWidth: 2,
-        borderRadius: 2,
-        backgroundColor: 'white',
-        elevation: 2
-    },
-    title: {
-        fontSize: 16,
-    },
-    subtitle: {
-        fontSize: 12,
-        color: 'grey'
     }
 });
