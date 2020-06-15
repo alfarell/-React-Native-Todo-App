@@ -3,7 +3,7 @@ import { StyleSheet, View, StatusBar } from 'react-native';
 
 import DisplayTodoList from '../components/DisplayTodoList';
 import InputForm from '../components/InputForm';
-import TodoContextProvider from '../components/TodoContext';
+import TodoContextProvider from '../services/TodoContext';
 
 const HomeScreen = () => {
     return (
