@@ -4,9 +4,7 @@ import { LogoAnimation } from '../components/Logo';
 
 const LoadingScreen = ({ navigation }) => {
     useEffect(() => {
-        setTimeout(() => {
-            navigation.replace('Home');
-        }, 3000);
+        setTimeout(() => navigation.replace('HomeScreen'), 3000);
     }, []);
 
     return (

@@ -23,7 +23,7 @@ const ListItem = ({ item }) => {
         }}>
             <View style={{ ...styles.todoCard, borderLeftColor: listColor }}>
                 <Text style={styles.title}>{todo}</Text>
-                <Text style={styles.subtitle}>{`${date} : ${time}`}</Text>
+                <Text style={styles.subtitle}>{`${date} - ${time}`}</Text>
             </View>
         </Swipeable>
     );

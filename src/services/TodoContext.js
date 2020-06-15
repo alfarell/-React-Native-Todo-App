@@ -8,20 +8,20 @@ export const TodoContext = createContext();
 
 const TodoContextProvider = (props) => {
     const [inputText, setInputText] = useState('');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
     const [todoList, setTodoList] = useState([]);
     let [numberOfTodo, setNumberOfTodo] = useState(0);
 
     const submitTodo = () => {
-        const date = new Date();
-
         if (inputText) {
             setTodoList([
                 ...todoList,
                 {
                     key: uuid.v1(),
                     todo: inputText,
-                    date: date.toLocaleDateString(),
-                    time: date.toLocaleTimeString(),
+                    date: date,
+                    time: time,
                     style: {
                         listColor: randomColor()
                     }
@@ -30,6 +30,8 @@ const TodoContextProvider = (props) => {
         }
 
         setInputText('');
+        setDate('');
+        setTime('');
         Keyboard.dismiss();
     };
 
@@ -54,7 +56,17 @@ const TodoContextProvider = (props) => {
     }, [todoList]);
 
     return (
-        <TodoContext.Provider value={{ todoList, inputText, setInputText, submitTodo, deleteTodo }}>
+        <TodoContext.Provider value={{
+            inputText,
+            setInputText,
+            date,
+            setDate,
+            time,
+            setTime,
+            todoList,
+            submitTodo,
+            deleteTodo
+        }}>
             {props.children}
         </TodoContext.Provider>
     );

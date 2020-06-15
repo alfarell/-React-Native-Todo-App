@@ -2,18 +2,18 @@ import React, { useContext } from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
 import { TodoContext } from '../services/TodoContext';
 
-const InputForm = () => {
-    const { inputText, setInputText, submitTodo } = useContext(TodoContext);
-
+const InputForm = ({ inputText, setInputText }) => {
     return (
         <View style={styles.form}>
             <TextInput
-                placeholder='Enter text...'
                 multiline
+                numberOfLines={10}
+                textAlignVertical='top'
+                placeholder='What are you planning?'
+                style={styles.inputForm}
                 value={inputText}
                 onChangeText={(text) => setInputText(text)}
             />
-            <Button title='ADD' onPress={submitTodo} />
         </View>
     );
 };
@@ -21,10 +21,7 @@ const InputForm = () => {
 export default InputForm;
 
 const styles = StyleSheet.create({
-    form: {
-        paddingVertical: 10,
-        paddingHorizontal: 10,
-        backgroundColor: '#fff',
-        borderRadius: 5
-    },
+    inputForm: {
+        padding: 10
+    }
 });

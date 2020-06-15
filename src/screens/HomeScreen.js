@@ -2,18 +2,24 @@ import React from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 
 import DisplayTodoList from '../components/DisplayTodoList';
-import InputForm from '../components/InputForm';
-import TodoContextProvider from '../services/TodoContext';
+import { Logo } from '../components/Logo';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+    navigation.setOptions({
+        headerTitle: () => {
+            return (
+                <View style={{ width: 120 }}>
+                    <Logo fontSize={14} circleSize={{ height: 25, width: 25 }} />
+                </View>
+            );
+        },
+    });
+
     return (
-        <TodoContextProvider>
-            <View style={styles.container}>
-                <StatusBar backgroundColor='#fff' barStyle='dark-content' />
-                <InputForm />
-                <DisplayTodoList />
-            </View>
-        </TodoContextProvider>
+        <View style={styles.container}>
+            <StatusBar backgroundColor='#fff' barStyle='dark-content' />
+            <DisplayTodoList />
+        </View>
     );
 };
 
