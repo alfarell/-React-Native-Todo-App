@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { AppColors } from '../utils/AppConst';
 import { TodoContext } from '../services/TodoContext';
@@ -13,7 +13,7 @@ const DisplayTodoList = () => {
     const addNewTodo = () => navigation.navigate('AddTodoScreen');
 
     return (
-        <View style={styles.container}>
+        <Fragment>
             <View style={styles.header}>
                 <Text style={styles.title}>Todo List</Text>
                 <TouchableOpacity style={styles.addButton} onPress={addNewTodo}>
@@ -26,7 +26,7 @@ const DisplayTodoList = () => {
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => <ListItem item={item} />}
             />
-        </View>
+        </Fragment>
     );
 };
 
@@ -60,7 +60,4 @@ const styles = StyleSheet.create({
     buttonTitle: {
         color: '#fff'
     },
-    container: {
-        flex: 1
-    }
 });

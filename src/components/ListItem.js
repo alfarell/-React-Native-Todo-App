@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     todoCard: {
         justifyContent: 'center',
         minHeight: 70,
-        margin: 3,
+        margin: 2,
         paddingHorizontal: 10,
         paddingVertical: 10,
         borderLeftWidth: 2,
