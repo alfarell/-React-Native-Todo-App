@@ -4,6 +4,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { IconButton } from 'react-native-paper';
 import { AppColors } from '../utils/AppConst';
 import { TodoContext } from '../services/TodoContext';
+import IconText from './IconText';
 
 const ListItem = ({ item }) => {
     const { key, todo, date, time, style: { listColor } } = item;
@@ -23,7 +24,22 @@ const ListItem = ({ item }) => {
         }}>
             <View style={{ ...styles.todoCard, borderLeftColor: listColor }}>
                 <Text style={styles.title}>{todo}</Text>
-                <Text style={styles.subtitle}>{`${date} - ${time}`}</Text>
+                <View style={styles.subtitle}>
+                    <IconText
+                        icon='calendar-check-outline'
+                        iconSize={16}
+                        iconColor={AppColors.Primary}
+                        label={date}
+                        mode='date'
+                    />
+                    <IconText
+                        icon='clock-outline'
+                        iconSize={16}
+                        iconColor={AppColors.Secondary}
+                        label={time}
+                        mode='time'
+                    />
+                </View>
             </View>
         </Swipeable>
     );
@@ -47,8 +63,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     subtitle: {
-        fontSize: 12,
-        color: 'grey'
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     rightSwipeItems: {
         justifyContent: 'center',

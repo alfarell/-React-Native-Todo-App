@@ -17,22 +17,24 @@ const DateTimePickerButton = (props) => {
     } = props;
 
     const [show, setShow] = useState(false);
-    const [dateTime, setDateTime] = useState(new Date().getTime());
+    const [dateTimePicker, setDateTimePicker] = useState(new Date().getTime());
 
     const showDateTimePicker = () => {
         setShow(true);
     };
 
-    const submitDateTime = (event, selected) => {
-        const currentDate = dateTime || selected;
+    const submitDateTime = (event, selectedDateTime) => {
+        const currentDate = selectedDateTime || dateTimePicker;
         setShow(false);
-        setDateTime(currentDate);
-        setDateTimeContext(moment(selected).format(
-            mode === 'date'
-                ? 'dddd, MMMM DD YYYY'
-                : 'HH:mm'
-        ));
-    }
+        setDateTimePicker(currentDate);
+        setDateTimeContext(currentDate);
+    };
+
+    const formatedDateTime = moment(dateTimeContext).format(
+        mode === 'date'
+            ? 'dddd - MMMM DD, YYYY'
+            : 'HH:mm'
+    );
 
     return (
         <TouchableNativeFeedback onPress={showDateTimePicker}>
@@ -43,11 +45,11 @@ const DateTimePickerButton = (props) => {
                     color={iconColor}
                 />
                 <Text style={{ ...styles.label, color: labelColor }}>
-                    {dateTimeContext === '' ? label : dateTimeContext}
+                    {dateTimeContext === '' ? label : formatedDateTime}
                 </Text>
                 {show && (
                     <DateTimePicker
-                        value={dateTime}
+                        value={dateTimePicker}
                         mode={mode}
                         display='default'
                         is24Hour={true}

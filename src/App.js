@@ -13,7 +13,7 @@ const App = () => {
     <TodoContextProvider>
       <NavigationContainer>
         <Stack.Navigator headerMode='screen'>
-          <Stack.Screen name='LoadingScreen' component={LoadingScreen} options={{ headerShown: false }} />
+          <Stack.Screen name='LoadingScreen' component={LoadingScreen} options={{ headerShown: false, }} />
           <Stack.Screen name='HomeScreen' component={HomeScreen} />
           <Stack.Screen name='AddTodoScreen' component={AddTodoScreen} />
         </Stack.Navigator>

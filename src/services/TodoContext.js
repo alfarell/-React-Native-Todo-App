@@ -51,7 +51,6 @@ const TodoContextProvider = (props) => {
         if (todoList.length < numberOfTodo) {
             showToastMessage('To-do deleted');
             setNumberOfTodo(numberOfTodo - 1);
-
         }
     }, [todoList]);
 

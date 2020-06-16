@@ -14,15 +14,18 @@ const AddTodoScreen = ({ navigation }) => {
     const {
         inputText,
         setInputText,
-        date, setDate,
+        date,
         time,
+        setDate,
         setTime,
         submitTodo
     } = useContext(TodoContext);
 
     const handleSubmit = () => {
-        submitTodo();
-        navigation.navigate('HomeScreen');
+        if (inputText && date && time) {
+            submitTodo();
+            navigation.navigate('HomeScreen');
+        }
     }
     return (
         <View style={styles.container}>
