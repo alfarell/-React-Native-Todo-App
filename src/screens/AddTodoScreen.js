@@ -27,16 +27,18 @@ const AddTodoScreen = ({ navigation }) => {
             navigation.navigate('HomeScreen');
         }
     }
+
     return (
         <View style={styles.container}>
             <TextInput
+                testID='input-todo'
                 multiline
                 numberOfLines={10}
                 textAlignVertical='top'
                 placeholder='What are you planning?'
                 style={styles.inputForm}
                 value={inputText}
-                onChangeText={(text) => setInputText(text)}
+                onChangeText={setInputText}
             />
             <DateTimePickerButton
                 icon='calendar-blank'
@@ -59,7 +61,7 @@ const AddTodoScreen = ({ navigation }) => {
                 setDateTimeContext={setTime}
             />
             <View style={styles.button}>
-                <Button title='Add' onPress={handleSubmit} />
+                <Button testID='submit-todo' title='Add' onPress={handleSubmit} />
             </View>
         </View>
     );
