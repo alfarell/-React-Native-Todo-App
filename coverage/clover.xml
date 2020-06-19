@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1592561105314" clover="3.2.0">
+  <project timestamp="1592561105315" name="All files">
+    <metrics statements="55" coveredstatements="48" conditionals="24" coveredconditionals="15" methods="12" coveredmethods="10" elements="91" coveredelements="73" complexity="0" loc="55" ncloc="55" packages="4" files="6" classes="6"/>
+    <package name="components">
+      <metrics statements="17" coveredstatements="13" conditionals="10" coveredconditionals="6" methods="4" coveredmethods="3"/>
+      <file name="DateTimePickerButton.js" path="C:\Users\NB01\Documents\MyProject\React Native\Task\MyTodoApp\src\components\DateTimePickerButton.js">
+        <metrics statements="14" coveredstatements="10" conditionals="10" coveredconditionals="6" methods="3" coveredmethods="2"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="39" count="6" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+      </file>
+      <file name="ToastMessage.js" path="C:\Users\NB01\Documents\MyProject\React Native\Task\MyTodoApp\src\components\ToastMessage.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens">
+      <metrics statements="8" coveredstatements="5" conditionals="5" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="AddTodoScreen.js" path="C:\Users\NB01\Documents\MyProject\React Native\Task\MyTodoApp\src\screens\AddTodoScreen.js">
+        <metrics statements="8" coveredstatements="5" conditionals="5" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="services">
+      <metrics statements="25" coveredstatements="25" conditionals="9" coveredconditionals="9" methods="5" coveredmethods="5"/>
+      <file name="TodoContext.js" path="C:\Users\NB01\Documents\MyProject\React Native\Task\MyTodoApp\src\services\TodoContext.js">
+        <metrics statements="25" coveredstatements="25" conditionals="9" coveredconditionals="9" methods="5" coveredmethods="5"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="29" type="stmt"/>
+        <line num="11" count="29" type="stmt"/>
+        <line num="12" count="29" type="stmt"/>
+        <line num="13" count="29" type="stmt"/>
+        <line num="14" count="29" type="stmt"/>
+        <line num="16" count="29" type="stmt"/>
+        <line num="17" count="5" type="cond" truecount="5" falsecount="0"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="38" count="29" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="46" count="29" type="stmt"/>
+        <line num="47" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="51" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="57" count="29" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="AppConst.js" path="C:\Users\NB01\Documents\MyProject\React Native\Task\MyTodoApp\src\utils\AppConst.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="GenerateRandomColor.js" path="C:\Users\NB01\Documents\MyProject\React Native\Task\MyTodoApp\src\utils\GenerateRandomColor.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

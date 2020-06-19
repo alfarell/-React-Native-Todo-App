@@ -14,7 +14,7 @@ const TodoContextProvider = (props) => {
     let [numberOfTodo, setNumberOfTodo] = useState(0);
 
     const submitTodo = () => {
-        if (inputText) {
+        if (inputText && date && time) {
             setTodoList([
                 ...todoList,
                 {
@@ -27,12 +27,12 @@ const TodoContextProvider = (props) => {
                     }
                 }
             ]);
-        }
 
-        setInputText('');
-        setDate('');
-        setTime('');
-        Keyboard.dismiss();
+            setInputText('');
+            setDate('');
+            setTime('');
+            Keyboard.dismiss();
+        }
     };
 
     const deleteTodo = (todoId) => {

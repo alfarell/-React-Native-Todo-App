@@ -37,7 +37,7 @@ const DateTimePickerButton = (props) => {
     );
 
     return (
-        <TouchableNativeFeedback onPress={showDateTimePicker}>
+        <TouchableNativeFeedback testID={`show-${mode}-picker`} onPress={showDateTimePicker}>
             <View style={styles.button}>
                 <MaterialCommunityIcons
                     name={dateTimeContext === '' ? icon : iconSelected}
@@ -49,6 +49,7 @@ const DateTimePickerButton = (props) => {
                 </Text>
                 {show && (
                     <DateTimePicker
+                        testID={`${mode}-picker`}
                         value={dateTimePicker}
                         mode={mode}
                         display='default'

@@ -6,11 +6,6 @@ import DateTimePickerButton from '../components/DateTimePickerButton';
 import { AppColors } from '../utils/AppConst';
 
 const AddTodoScreen = ({ navigation }) => {
-    navigation.setOptions({
-        title: 'Add new To-do',
-        headerBackTitle: 'cancel'
-    });
-
     const {
         inputText,
         setInputText,
@@ -22,8 +17,8 @@ const AddTodoScreen = ({ navigation }) => {
     } = useContext(TodoContext);
 
     const handleSubmit = () => {
+        submitTodo();
         if (inputText && date && time) {
-            submitTodo();
             navigation.navigate('HomeScreen');
         }
     }

@@ -40,15 +40,15 @@ describe('to-do services', () => {
                 />
                 <Button testID='submit-todo' title='add' onPress={submitTodo} />
                 <View testID='todo-list'>
-                    {todoList.map(item => <ListItemComponent id={item.key} {...item} />)}
+                    {todoList.map(item => <ListItemComponent {...item} id={item.key} handleDelete={deleteTodo} />)}
                 </View>
             </View>
         );
     };
 
-    const ListItemComponent = ({ id, todo, date, time }) => {
+    const ListItemComponent = ({ id, todo, date, time, handleDelete }) => {
         return (
-            <TouchableNativeFeedback testID='todo-item' onPress={() => deleteTodo(id)}>
+            <TouchableNativeFeedback testID='todo-item' onPress={() => handleDelete(id)}>
                 <View>
                     <Text testID='todo'>{todo}</Text>
                     <Text testID='date'>{date}</Text>
@@ -58,13 +58,12 @@ describe('to-do services', () => {
         )
     }
 
-    const { getByTestId, queryByTestId, getByText } = render(
-        <TodoContextProvider>
-            <TestComponent />
-        </TodoContextProvider>
-    );
-
     it('should insert text into inputText when input form is filled', () => {
+        const { getByTestId } = render(
+            <TodoContextProvider>
+                <TestComponent />
+            </TodoContextProvider>
+        );
 
         fireEvent.changeText(getByTestId('input-todo'), 'testing to-do list');
 
@@ -72,15 +71,18 @@ describe('to-do services', () => {
     });
 
     it('should set the date time when date time setting is selected', () => {
+        const { getByTestId } = render(
+            <TodoContextProvider>
+                <TestComponent />
+            </TodoContextProvider>
+        );
+
         expect(getByTestId('selected-date').props.children).toEqual('');
         expect(getByTestId('selected-time').props.children).toEqual('');
 
-        // fireEvent.press(getByTestId('select-date'));
-        // fireEvent.press(getByTestId('select-time'));
-
         act(() => {
-            getByTestId('select-date').props.onClick()
-            getByTestId('select-time').props.onClick()
+            getByTestId('select-date').props.onClick();
+            getByTestId('select-time').props.onClick();
         })
 
         expect(getByTestId('selected-date').props.children).toEqual('1 jan 2020');
@@ -88,14 +90,106 @@ describe('to-do services', () => {
     });
 
     it('should add new todo into todo list', () => {
+        const { getByTestId } = render(
+            <TodoContextProvider>
+                <TestComponent />
+            </TodoContextProvider>
+        );
+
         fireEvent.changeText(getByTestId('input-todo'), 'testing to-do list');
         act(() => {
             getByTestId('select-date').props.onClick();
             getByTestId('select-time').props.onClick();
+        })
+
+        expect(getByTestId('input-todo').props.value).toEqual('testing to-do list');
+        expect(getByTestId('selected-date').props.children).toEqual('1 jan 2020');
+        expect(getByTestId('selected-time').props.children).toEqual('00:00');
+
+        act(() => {
             getByTestId('submit-todo').props.onClick();
         })
 
+        expect(getByTestId('input-todo').props.value).toEqual('');
+        expect(getByTestId('selected-date').props.children).toEqual('');
+        expect(getByTestId('selected-time').props.children).toEqual('');
         expect(getByTestId('todo-list').props.children).not.toBeNull();
+        expect(getByTestId('todo-list').props.children.length).not.toEqual(0);
+        expect(getByTestId('todo').props.children).toEqual('testing to-do list');
+        expect(getByTestId('date').props.children).toEqual('1 jan 2020');
+        expect(getByTestId('time').props.children).toEqual('00:00');
+    });
 
-    })
+    it('should not add new todo when todo text is empty', () => {
+        const { getByTestId } = render(
+            <TodoContextProvider>
+                <TestComponent />
+            </TodoContextProvider>
+        );
+
+        act(() => {
+            getByTestId('select-date').props.onClick();
+            getByTestId('select-time').props.onClick();
+            getByTestId('submit-todo').props.onClick();
+        });
+
+        expect(getByTestId('todo-list').props.children).toStrictEqual([]);
+    });
+
+    it('should not add new todo when date is not selected', () => {
+        const { getByTestId } = render(
+            <TodoContextProvider>
+                <TestComponent />
+            </TodoContextProvider>
+        );
+
+        fireEvent.changeText(getByTestId('input-todo'), 'testing to-do list');
+        act(() => {
+            getByTestId('select-time').props.onClick();
+            getByTestId('submit-todo').props.onClick();
+        });
+
+        expect(getByTestId('todo-list').props.children).toStrictEqual([]);
+    });
+
+    it('should not add new todo when time is not selected', () => {
+        const { getByTestId } = render(
+            <TodoContextProvider>
+                <TestComponent />
+            </TodoContextProvider>
+        );
+
+        fireEvent.changeText(getByTestId('input-todo'), 'testing to-do list');
+        act(() => {
+            getByTestId('select-date').props.onClick();
+            getByTestId('submit-todo').props.onClick();
+        });
+
+        expect(getByTestId('todo-list').props.children).toStrictEqual([]);
+    });
+
+    it('should delete todo when deleteTodo is called', async () => {
+        const { getByTestId } = render(
+            <TodoContextProvider>
+                <TestComponent />
+            </TodoContextProvider>
+        );
+
+        fireEvent.changeText(getByTestId('input-todo'), 'testing to-do list');
+        await act(async () => {
+            await getByTestId('select-date').props.onClick();
+            await getByTestId('select-time').props.onClick();
+            await getByTestId('submit-todo').props.onClick();
+        });
+
+        expect(getByTestId('todo-list').props.children).not.toBeNull();
+        expect(getByTestId('todo-list').props.children.length).not.toEqual(0);
+
+        await act(async () => {
+            await getByTestId('todo-item').props.onClick();
+        });
+
+        expect(getByTestId('todo-list').props.children).toStrictEqual([]);
+        expect(getByTestId('todo-list').props.children.length).toEqual(0);
+    });
 }); 
